@@ -1,0 +1,223 @@
+name: DeathTpPlusRenewed
+main: org.spigotmc.DeathTpPlusRenewed.DeathTpPlusRenewed
+version: 0.1.0.1
+website: https://www.spigotmc.org
+authors: ['Don Redhorse', 'mung3r', 'nordlead2005']
+description: Death teleport, Death Messages, Tombstone and Tombs
+softdepend: [Vault,LWC,Lockette,MobArena,dynmap,WorldGuard]
+api-version: 1.13
+
+commands:
+    deathtp:
+        description: Teleports you back to your last death location
+        usage: |
+            /<command>
+    streak:
+        description: Lets you view your or other's kill/death streak.
+        usage: |
+            /<command> [player]
+            Example: /<command> - Displays your streak.
+            Example: /<command> lonelydime's - checks lonelydime's streak.
+    deaths:
+        description: Lets you view your or other's total deaths.
+        usage: |
+            /<command> [username] [cause]
+            Example: /<command> - Displays your total death count.
+            Example: /<command> lonelydime - Displays total death count.
+            Example: /<command> lonelydime creeper - checks lonelydime's deaths by creeper.
+    kills:
+        description: Lets you view your or other's total pvp kills.
+        usage: |
+            /<command> [username] [playername]
+            Example: /<command> - Displays your total kill count.
+            Example: /<command> dredhorse - Displays total kill count.
+            Example: /<command> lonelydime dredhorse - prints times lonelydime killed dredhorse.
+    dtpreport:
+        description: Display your kill/death reports
+        aliases: report
+        usage: |
+            /<command> <kills|deaths> [page_number]
+            Example: /<command> kills - Displays your kill report
+            Example: /<command> deaths 1 - Displays page 1 of your death report
+    dtptop:
+        description: Display global top kill/death reports
+        aliases: top
+        usage: |
+            /<command> <kills|deaths> [page#]
+    dtpadmin:
+        description: Lets you use the admin commands for tombstones.
+        usage: |
+            /<command> [subcommand]
+            Example: /<command> list
+    dtpfind:
+        description: Allows you to find your tombstone via directions and your compass
+        usage: |
+            /<command> <index>
+            Example: /dtpfind 2
+    dtplist:
+        description: Allows you to list all your tombstones inkl. index
+        usage: |
+            /<command>
+    dtptime:
+        description: Tells you how much time is left before the specified tombstone has its protection remove or it breaks
+        usage: |
+            /<command> <index>
+            Example: /dtptime 2
+    dtpreset:
+        description: Reset compass to your spawnpoint
+        usage: |
+            /<command>
+
+permissions:
+    DeathTpPlusRenewed.*:
+        description: Gives access to all DeathTpPlusRenewed commands
+        children:
+            DeathTpPlusRenewed.deathtp.deathtp: true
+            DeathTpPlusRenewed.deathtp.streak: true
+            DeathTpPlusRenewed.deathtp.deaths: true
+            DeathTpPlusRenewed.deathtp.kills: true
+            DeathTpPlusRenewed.deathtp.report: true
+            DeathTpPlusRenewed.deathtp.top: true
+            DeathTpPlusRenewed.worldtravel: true
+            DeathTpPlusRenewed.admin: true
+            DeathTpPlusRenewed.admin.list: true
+            DeathTpPlusRenewed.admin.find: true
+            DeathTpPlusRenewed.admin.remove: true
+            DeathTpPlusRenewed.admin.time: true
+            DeathTpPlusRenewed.admin.version: true
+            DeathTpPlusRenewed.admin.untomb: true
+            DeathTpPlusRenewed.tombstone.use: true
+            DeathTpPlusRenewed.tombstone.freechest: true
+            DeathTpPlusRenewed.tombstone.large: true
+            DeathTpPlusRenewed.tombstone.lwc: true
+            DeathTpPlusRenewed.tombstone.lockette: true
+            DeathTpPlusRenewed.tombstone.sign: true
+            DeathTpPlusRenewed.tombstone.freesign: true
+            DeathTpPlusRenewed.tombstone.quickloot: true
+            DeathTpPlusRenewed.tombstone.find: true
+            DeathTpPlusRenewed.tombstone.list: true
+            DeathTpPlusRenewed.tombstone.reset: true
+            DeathTpPlusRenewed.tombstone.time: true
+            DeathTpPlusRenewed.tomb.create: true
+            DeathTpPlusRenewed.tomb.free: true
+    DeathTpPlusRenewed.deathtp.*:
+        description: Gives access to default DeathTpPlusRenewed commands
+        children:
+            DeathTpPlusRenewed.deathtp.deathtp: true
+            DeathTpPlusRenewed.deathtp.streak: true
+            DeathTpPlusRenewed.deathtp.deaths: true
+            DeathTpPlusRenewed.deathtp.kills: true
+            DeathTpPlusRenewed.deathtp.report: true
+            DeathTpPlusRenewed.deathtp.top: true
+    DeathTpPlusRenewed.admin.*:
+        description: Gives access to all DeathTpPlusRenewed admin commands
+        children:
+            DeathTpPlusRenewed.admin: true
+            DeathTpPlusRenewed.admin.list: true
+            DeathTpPlusRenewed.admin.find: true
+            DeathTpPlusRenewed.admin.remove: true
+            DeathTpPlusRenewed.admin.time: true
+            DeathTpPlusRenewed.admin.version: true
+            DeathTpPlusRenewed.admin.untomb: true
+    DeathTpPlusRenewed.tombstone.*:
+        description: Gives access to default DeathTpPlusRenewed tombstone commands
+        children:
+            DeathTpPlusRenewed.tombstone.use: true
+            DeathTpPlusRenewed.tombstone.find: true
+            DeathTpPlusRenewed.tombstone.list: true
+            DeathTpPlusRenewed.tombstone.reset: true
+            DeathTpPlusRenewed.tombstone.time: true
+            DeathTpPlusRenewed.tombstone.large: true
+            DeathTpPlusRenewed.tombstone.lwc: true
+            DeathTpPlusRenewed.tombstone.lockette: true
+    DeathTpPlusRenewed.tomb.*:
+        description: Gives access to all DeathTpPlusRenewed tomb commands / features
+        children:
+            DeathTpPlusRenewed.tomb.create: true
+            DeathTpPlusRenewed.tomb.free: true
+
+    DeathTpPlusRenewed.deathtp.deathtp:
+        description: Gives access to the deathtp command
+        default: op
+    DeathTpPlusRenewed.deathtp.streak:
+        description: Gives access to the streak command
+        default: true
+    DeathTpPlusRenewed.deathtp.deaths:
+        description: Gives access to the deaths command
+        default: true
+    DeathTpPlusRenewed.deathtp.kills:
+        description: Gives access to the kills command
+        default: true
+    DeathTpPlusRenewed.deathtp.report:
+        description: Gives access to the report command
+        default: true
+    DeathTpPlusRenewed.deathtp.top:
+        description: Gives access to the top command
+        default: true
+    DeathTpPlusRenewed.worldtravel:
+        description: Allows teleporting / respawn to another worlds death location if allowWordTravel is "permissions"
+        default: op
+    DeathTpPlusRenewed.admin:
+        description: Allows you to destroy tombstones, also prerequisite for other admin commands.
+        default: op
+    DeathTpPlusRenewed.admin.list:
+        description: Allows you to see a list of tombstones for a player / all
+        default: op
+    DeathTpPlusRenewed.admin.find:
+        description: Allows you to find a tombstones for a player / all
+        default: op
+    DeathTpPlusRenewed.admin.remove:
+        description: Allows you to remove a tombstone for a player
+        default: op
+    DeathTpPlusRenewed.admin.time:
+        description: Allows you to change the timeout values of a tombstone
+        default: op
+    DeathTpPlusRenewed.admin.version:
+        description: Allows you to check if the plugin is the newest version
+        default: op
+    DeathTpPlusRenewed.admin.untomb:
+        description: Allows to remove tombs from players
+        default: op
+    DeathTpPlusRenewed.tombstone.use:
+        description: Allows you to use the tombstones
+        default: true
+    DeathTpPlusRenewed.tombstone.freechest:
+        description: Allows the player to get a chest even if he doesn't has one
+        default: op
+    DeathTpPlusRenewed.tombstone.large:
+        description: Allow the player to spawn a large chest
+        default: op
+    DeathTpPlusRenewed.tombstone.lwc:
+        description: Allow LWC protection
+        default: true
+    DeathTpPlusRenewed.tombstone.lockette:
+        description: Allow Lockette protection
+        default: true
+    DeathTpPlusRenewed.tombstone.sign:
+        description: Allow player to get a sign on the tombstone
+        default: op
+    DeathTpPlusRenewed.tombstone.freesign:
+        description: Allow the player to get a sign even if he doesn't has one
+        default: op
+    DeathTpPlusRenewed.tombstone.quickloot:
+        description: Allow quicklooting the tombstone by rightclicking the sign
+        default: true
+    DeathTpPlusRenewed.tombstone.find:
+        description: Allows you to find your tombstone via the compass
+        default: op
+    DeathTpPlusRenewed.tombstone.list:
+        description: Allows you to get a list of your tombstones
+        default: op
+    DeathTpPlusRenewed.tombstone.reset:
+        description: Allows you to reset your compass
+        default: op
+    DeathTpPlusRenewed.tombstone.time:
+        description: Allows you to check the time configuration of your tombstone
+        default: op
+    DeathTpPlusRenewed.tomb.free:
+        description: Allows to get a free Tomb Sign
+        default: op
+    DeathTpPlusRenewed.tomb.create:
+        description: Allows player to create a tomb
+        default: true
+
