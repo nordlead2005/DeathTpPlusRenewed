@@ -501,7 +501,7 @@ public class TombStoneHelper {
         for (int x = baseX - 1; x < baseX + 1; x++) {
             for (int z = baseZ - 1; z < baseZ + 1; z++) {
                 Block b = w.getBlockAt(x, baseY, z);
-                if (config.getReplaceableBlocks().contains(b.getType().toString().toLowerCase())) {
+                if (canReplace(b.getType())) {
                     return b;
                 }
             }

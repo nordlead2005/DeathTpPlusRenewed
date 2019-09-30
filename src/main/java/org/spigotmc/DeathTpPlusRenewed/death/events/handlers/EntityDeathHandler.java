@@ -760,7 +760,7 @@ public class EntityDeathHandler {
 		}
 
 		//WorldGuard 7.0
-		if (plugin.isWorldGuardEnabled())
+		if (signBlock != null && plugin.isWorldGuardEnabled())
 		{
 			LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(deathDetail.getPlayer());
 			RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
