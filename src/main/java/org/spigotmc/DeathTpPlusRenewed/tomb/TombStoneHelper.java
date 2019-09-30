@@ -498,9 +498,10 @@ public class TombStoneHelper {
             return null;
         }
 
-        for (int x = baseX - 1; x < baseX + 1; x++) {
-            for (int z = baseZ - 1; z < baseZ + 1; z++) {
+        for (int x = baseX - 1; x <= baseX + 1; x++) {
+            for (int z = baseZ - 1; z <= baseZ + 1; z++) {
                 Block b = w.getBlockAt(x, baseY, z);
+                log.informational("canReplace ["+x+","+baseY+","+z+"]");
                 if (canReplace(b.getType())) {
                     return b;
                 }
