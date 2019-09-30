@@ -3,7 +3,6 @@ package org.spigotmc.DeathTpPlusRenewed.death;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.*;
-import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;

@@ -15,7 +15,7 @@ public class TombStoneBlock {
     private Block block;
     private Block lBlock;
     private Block sign;
-    private Sign LocketteSign;
+    private Sign BlockLockerSign;
     private long time;
     private String owner;
     private boolean lwcEnabled = false;
@@ -62,8 +62,8 @@ public class TombStoneBlock {
         return sign;
     }
 
-    public Sign getLocketteSign() {
-        return LocketteSign;
+    public Sign getBlockLockerSign() {
+        return BlockLockerSign;
     }
 
     public String getOwner() {
@@ -79,12 +79,12 @@ public class TombStoneBlock {
         lwcEnabled = val;
     }
 
-    public void setLocketteSign(Sign sign) {
-        this.LocketteSign = sign;
+    public void setBlockLockerSign(Sign sign) {
+        this.BlockLockerSign = sign;
     }
 
-    public void removeLocketteSign() {
-        this.LocketteSign = null;
+    public void removeBlockLockerSign() {
+        this.BlockLockerSign = null;
     }
 
     public void clearExperience() {

@@ -7,12 +7,13 @@ import com.griefcraft.lwc.LWCPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import net.milkbowl.vault.economy.Economy;
+import nl.rutgerkok.blocklocker.BlockLockerPlugin;
+
 import org.dynmap.DynmapAPI;
 import org.spigotmc.DeathTpPlusRenewed.DeathTpPlusRenewed;
 import org.spigotmc.DeathTpPlusRenewed.commons.ConfigManager;
 import org.spigotmc.DeathTpPlusRenewed.commons.DefaultLogger;
 import org.spigotmc.DeathTpPlusRenewed.commons.DynMapHelper;
-import org.yi.acru.bukkit.Lockette.Lockette;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -58,9 +59,9 @@ public class ServerListener implements Listener {
 			plugin.setLwcPluginVersion("");
 		}
 
-		if (event.getPlugin() == plugin.getLockettePlugin()) {
-			log.info("Lockette plugin lost.");
-			plugin.setLockettePlugin(null);
+		if (event.getPlugin() == plugin.getBlockLockerPlugin()) {
+			log.info("BlockLocker plugin lost.");
+			plugin.setBlockLockerPlugin(null);
 		}
 		Plugin checkMobArena = pm.getPlugin("MobArena");
 		if ((checkMobArena == null) && plugin.isMobArenaEnabled()) {
@@ -127,10 +128,10 @@ public class ServerListener implements Listener {
 			}
 		}
 
-		if (plugin.getLockettePlugin() == null) {
+		if (plugin.getBlockLockerPlugin() == null) {
 			if (event.getPlugin().getDescription().getName()
-					.equalsIgnoreCase("Lockette")) {
-				plugin.setLockettePlugin((Lockette) plugin.checkPlugin(event
+					.equalsIgnoreCase("BlockLocker")) {
+				plugin.setBlockLockerPlugin((BlockLockerPlugin) plugin.checkPlugin(event
 						.getPlugin()));
 			}
 		}

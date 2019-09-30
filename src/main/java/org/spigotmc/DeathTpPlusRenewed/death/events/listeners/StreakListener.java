@@ -1,6 +1,5 @@
 package org.spigotmc.DeathTpPlusRenewed.death.events.listeners;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,7 +34,6 @@ public class StreakListener implements Listener {
 	public void onKillStreakEvent(final KillStreakEvent event) {
 		String playerName = getPlayerNameForBroadcast(event.getPlayer());
 		plugin.getServer().broadcastMessage(event.getMessage().replace("%n", playerName));
-        final Location location = event.getPlayer().getLocation();
 	}
 
 	private String getPlayerNameForBroadcast(Player player) {

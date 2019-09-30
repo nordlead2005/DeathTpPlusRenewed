@@ -51,11 +51,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.yi.acru.bukkit.Lockette</groupId>
-			<artifactId>Lockette</artifactId>
-			<version>1.7.1</version>
+			<groupId>nl.rutgerkok</groupId>
+			<artifactId>BlockLocker</artifactId>
+			<version>1.6.1</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/Lockette.jar</systemPath>
+			<systemPath>${project.basedir}/lib/BlockLocker.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.griefcraft.lwc.LWCPlugin</groupId>
@@ -104,7 +104,7 @@
 		</plugins>
 	</build>
 	<description>DeathTp, DeathMessages, Tomb and TombStones</description>
-	<url>http://dev.bukkit.org/server-mods/deathtpplus/</url>
+	<url>https://www.spigotmc.org/resources/deathtpplusrenewed.71652/</url>
 	<name>DeathTpPlusRenewed</name>
 	<ciManagement>
 		<system>jenkins</system>
@@ -112,11 +112,11 @@
 	</ciManagement>
 	<issueManagement>
 		<system>GitHub</system>
-		<url>https://github.com/dredhorse/DeathTpPlusRenewed/issues</url>
+		<url>https://github.com/nordlead2005/DeathTpPlusRenewed/issues</url>
 	</issueManagement>
 	<scm>
-		<url>https://github.com/dredhorse/DeathTpPlusRenewed</url>
-		<connection>scm:git:git://github.com:dredhorse/DeathTpPlusRenewed.git</connection>
-		<developerConnection>scm:git:git@github.com:dredhorse/DeathTpPlusRenewed.git</developerConnection>
+		<url>https://github.com/nordlead2005/DeathTpPlusRenewed</url>
+		<connection>scm:git:git://github.com:nordlead2005/DeathTpPlusRenewed.git</connection>
+		<developerConnection>scm:git:git@github.com:nordlead2005/DeathTpPlusRenewed.git</developerConnection>
 	</scm>
 </project>

@@ -26,6 +26,7 @@ import com.griefcraft.lwc.LWCPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 import net.milkbowl.vault.economy.Economy;
+import nl.rutgerkok.blocklocker.BlockLockerPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -65,7 +66,6 @@ import org.spigotmc.DeathTpPlusRenewed.tomb.events.listeners.BlockListener;
 import org.spigotmc.DeathTpPlusRenewed.tomb.events.listeners.PlayerListener;
 import org.spigotmc.DeathTpPlusRenewed.tomb.workers.TombStoneWorker;
 import org.spigotmc.DeathTpPlusRenewed.tomb.workers.TombWorker;
-import org.yi.acru.bukkit.Lockette.Lockette;
 
 //~--- JDK imports ------------------------------------------------------------
 
@@ -73,7 +73,7 @@ import org.yi.acru.bukkit.Lockette.Lockette;
 
 //Register
 // importing commands and listeners
-//importing Lockette
+//importing BlockLocker
 // importing LWC
 
 /**
@@ -117,7 +117,7 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 	/**
 	 * Field description
 	 */
-	private Lockette LockettePlugin = null;
+	private BlockLockerPlugin blocklockerPlugin = null;
 	/**
 	 * Field description
 	 */
@@ -261,7 +261,7 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 		// register entityListener for Enable Tombstone or Tomb
 		if (config.isEnableTombStone() || config.isEnableTomb()) {
 			lwcPlugin = (LWCPlugin) checkPlugin("LWC");
-			LockettePlugin = (Lockette) checkPlugin("Lockette");
+			blocklockerPlugin = (BlockLockerPlugin) checkPlugin("BlockLocker");
 		}
 
 		// register entityListener for Enable Tomb
@@ -349,13 +349,13 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 				log.debug("lwcVersion ", pluginVersion);
 			}
 
-			if (pluginName.equalsIgnoreCase("Lockette")) {
-				setLockettePlugin((Lockette) plugin);
+			if (pluginName.equalsIgnoreCase("BlockLocker")) {
+				setBlockLockerPlugin((BlockLockerPlugin) plugin);
 			}
 
-			if (config.isEnableLockette() && (getLockettePlugin() == null)) {
-				log.warning("is configured to use Lockette, but Lockette wasn't found yet!");
-				log.warning("Still waiting for Lockette to become active!");
+			if (config.isEnableBlockLocker() && (getBlockLockerPlugin() == null)) {
+				log.warning("is configured to use BlockLocker, but BlockLocker wasn't found yet!");
+				log.warning("Still waiting for BlockLocker to become active!");
 			}
 
 			if (config.isEnableLWC() && (getLwcPlugin() == null)) {
@@ -619,8 +619,8 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 	 * Method description
 	 * @return
 	 */
-	public Lockette getLockettePlugin() {
-		return LockettePlugin;
+	public BlockLockerPlugin getBlockLockerPlugin() {
+		return blocklockerPlugin;
 	}
 
 	/**
@@ -643,10 +643,10 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 
 	/**
 	 * Method description
-	 * @param lockettePlugin
+	 * @param BlockLockerPlugin
 	 */
-	public void setLockettePlugin(Lockette lockettePlugin) {
-		LockettePlugin = lockettePlugin;
+	public void setBlockLockerPlugin(BlockLockerPlugin plugin) {
+		blocklockerPlugin = plugin;
 	}
 
 	//~--- methods ------------------------------------------------------------

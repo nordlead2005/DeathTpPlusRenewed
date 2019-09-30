@@ -4,9 +4,11 @@ package org.spigotmc.DeathTpPlusRenewed.death.events.handlers;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
+import org.bukkit.block.data.type.Chest.Type;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -362,7 +364,6 @@ public class EntityDeathHandler {
 //      Set the current block to a chest, init some variables for later use.
 		block.setType(Material.CHEST);
 
-//      We're running into issues with 1.3 where we can't cast to a Chest :(
 		BlockState state = block.getState();
 
 		if (!(state instanceof Chest)) {
@@ -394,6 +395,44 @@ public class EntityDeathHandler {
 					removeChestCount = 1;
 				}
 			}
+		}
+
+		//combine the chests and orrient them correctly
+		if(lChest != null && sChest != null)
+		{
+			org.bukkit.block.data.type.Chest chestData = null;
+			BlockFace facing = BlockFace.EAST;
+			Location sLocation = sChest.getLocation();
+			Location lLocation = lChest.getLocation();
+			if(sLocation.getX() < lLocation.getX())
+			{
+				facing = BlockFace.SOUTH;
+			}
+			else if(sLocation.getX() > lLocation.getX())
+			{
+				facing = BlockFace.NORTH;
+			}
+			else if(sLocation.getZ() < lLocation.getZ())
+			{
+				facing = BlockFace.WEST;
+			}
+			// else // is default, no need to set it again
+			// {
+			// 	facing = BlockFace.EAST;
+			// }
+			log.debug("Combining Chests into Large Chest and facing "+facing.toString());
+			chestData = (org.bukkit.block.data.type.Chest)sChest.getBlockData();
+			chestData.setType(Type.RIGHT);
+			chestData.setFacing(facing);
+			sChest.setBlockData(chestData);
+			chestData = (org.bukkit.block.data.type.Chest)lChest.getBlockData();
+			chestData.setType(Type.LEFT);
+			chestData.setFacing(facing);
+			lChest.setBlockData(chestData);
+
+			//update chests so they are drawn properly
+			sChest.update();
+			lChest.update();
 		}
 
 //      Don't remove any chests if they get a free one.
@@ -466,10 +505,10 @@ public class EntityDeathHandler {
 			protLWC = true;
 		}
 
-//      Protect the chest with Lockette if installed, enabled, and
+//      Protect the chest with BlockLocker if installed, enabled, and
 //      unprotected.
-		if (plugin.hasPerm(player, "tombstone.lockette", false)) {
-			prot = tombStoneHelper.protectWithLockette(player, tStoneBlock);
+		if (plugin.hasPerm(player, "tombstone.blocklocker", false)) {
+			prot = tombStoneHelper.protectWithBlockLocker(player, tStoneBlock);
 		}
 
 //      Add tombstone to list
@@ -573,9 +612,9 @@ public class EntityDeathHandler {
 
 		if (prot && !protLWC) {
 			plugin.sendMessage(player,
-					"Chest protected with Lockette. " + config.getRemoveTombStoneSecurityTimeOut()
+					"Chest protected with BlockLocker. " + config.getRemoveTombStoneSecurityTimeOut()
 							+ "s before chest is unprotected.");
-			log.debug(player.getName() + " Chest protected with Lockette.");
+			log.debug(player.getName() + " Chest protected with BlockLocker.");
 		}
 
 		if (config.isRemoveTombStone()) {
@@ -843,25 +882,21 @@ public class EntityDeathHandler {
 		Block exp;
 
 		exp = base.getWorld().getBlockAt(base.getX() - 1, base.getY(), base.getZ());
-
 		if (tombStoneHelper.canReplace(exp.getType()) && (config.isAllowInterfere() || !checkChest(exp))) {
 			return exp;
 		}
 
 		exp = base.getWorld().getBlockAt(base.getX(), base.getY(), base.getZ() - 1);
-
 		if (tombStoneHelper.canReplace(exp.getType()) && (config.isAllowInterfere() || !checkChest(exp))) {
 			return exp;
 		}
 
 		exp = base.getWorld().getBlockAt(base.getX() + 1, base.getY(), base.getZ());
-
 		if (tombStoneHelper.canReplace(exp.getType()) && (config.isAllowInterfere() || !checkChest(exp))) {
 			return exp;
 		}
 
 		exp = base.getWorld().getBlockAt(base.getX(), base.getY(), base.getZ() + 1);
-
 		if (tombStoneHelper.canReplace(exp.getType()) && (config.isAllowInterfere() || !checkChest(exp))) {
 			return exp;
 		}

@@ -1,6 +1,6 @@
 name: DeathTpPlusRenewed
 main: org.spigotmc.DeathTpPlusRenewed.DeathTpPlusRenewed
-version: 0.1.0.1
+version: 0.1.0.2
 website: https://www.spigotmc.org
 authors: ['Don Redhorse', 'mung3r', 'nordlead2005']
 description: Death teleport, Death Messages, Tombstone and Tombs

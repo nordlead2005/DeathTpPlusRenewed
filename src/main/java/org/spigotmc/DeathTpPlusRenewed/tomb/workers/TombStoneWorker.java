@@ -35,7 +35,8 @@ public class TombStoneWorker extends Thread {
                 .hasNext(); ) {
             TombStoneBlock tStoneBlock = iter.next();
 
-// "empty" option checks
+            // "empty" option checks - Delete chest if empty
+            //  or keep the chest if not empty (ignoring remove security and remove tombstone)
             if (config.isKeepTombStoneUntilEmpty() || config.isRemoveTombStoneWhenEmpty()) {
                 if (tStoneBlock.getBlock().getState() instanceof Chest) {
                     int itemCount = 0;
@@ -44,24 +45,25 @@ public class TombStoneWorker extends Thread {
                     Chest lChest = (tStoneBlock.getLBlock() != null) ? (Chest) tStoneBlock
                             .getLBlock().getState() : null;
 
+                    boolean hasItems = false;
                     for (ItemStack item : sChest.getInventory().getContents()) {
-                        if (item != null) {
-                            itemCount += item.getAmount();
+                        if (item != null && (item.getAmount() > 0)) {
+                            hasItems = true;
+                            break;
                         }
                     }
-                    if (lChest != null && itemCount == 0) {
+                    if (!hasItems && lChest != null) {
                         for (ItemStack item : lChest.getInventory()
                                 .getContents()) {
-                            if (item != null) {
-                                itemCount += item.getAmount();
+                            if (item != null && (item.getAmount() > 0)) {
+                                hasItems = true;
+                                break;
                             }
                         }
                     }
 
-                    if (config.isKeepTombStoneUntilEmpty()) {
-                        if (itemCount > 0) {
+                    if (config.isKeepTombStoneUntilEmpty() && hasItems) {
                             continue;
-                        }
                     }
                     if (config.isRemoveTombStoneWhenEmpty()) {
                         if (itemCount == 0) {
@@ -85,12 +87,12 @@ public class TombStoneWorker extends Thread {
                                     "LWC protection disabled on your tombstone!");
                         }
                     }
-                    if (tStoneBlock.getLocketteSign() != null
-                            && plugin.getLockettePlugin() != null) {
-                        tombStoneHelper.deactivateLockette(tStoneBlock);
+                    if (tStoneBlock.getBlockLockerSign() != null
+                            && plugin.getBlockLockerPlugin() != null) {
+                        tombStoneHelper.deactivateBlockLocker(tStoneBlock);
                         if (p != null) {
                             plugin.sendMessage(p,
-                                    "Lockette protection disabled on your tombstone!");
+                                    "BlockLocker protection disabled on your tombstone!");
                         }
                     }
                 }

@@ -98,7 +98,7 @@ public class BlockBreakHandler {
 				return;
 			}
 
-			if (tStoneBlock.getLocketteSign() != null) {
+			if (tStoneBlock.getBlockLockerSign() != null) {
 				Sign sign = (Sign) b.getState();
 
 				event.setCancelled(true);

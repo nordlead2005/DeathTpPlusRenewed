@@ -744,59 +744,10 @@ afterwards parsable again from the configuration class of bukkit
 	private void loadCustomTombMessages() {
 
 		log.info("Loading tomb messages..");
-		deathevents.put(DeathEventType.FALL, ConfigManager.checkList(tombMessages.getStringList("fall"), Arrays.asList(defaultFallMessages)));
-		deathevents.put(DeathEventType.DROWNING, ConfigManager.checkList(tombMessages.getStringList("drowning"), Arrays.asList(defaultDrowningMessages)));
-		deathevents.put(DeathEventType.FIRE, ConfigManager.checkList(tombMessages.getStringList("fire"), Arrays.asList(defaultFireMessages)));
-		deathevents.put(DeathEventType.FIRE_TICK, ConfigManager.checkList(tombMessages.getStringList("fire_tick"), Arrays.asList(defaultFireTickMessages)));
-		deathevents.put(DeathEventType.LAVA, ConfigManager.checkList(tombMessages.getStringList("lava"), Arrays.asList(defaultLavaMessages)));
-		deathevents.put(DeathEventType.CREEPER, ConfigManager.checkList(tombMessages.getStringList("creeper"), Arrays.asList(defaultCreeperMessages)));
-		deathevents.put(DeathEventType.SKELETON, ConfigManager.checkList(tombMessages.getStringList("skeleton"), Arrays.asList(defaultSkeletonMessages)));
-		deathevents.put(DeathEventType.SPIDER, ConfigManager.checkList(tombMessages.getStringList("spider"), Arrays.asList(defaultSpiderMessages)));
-		deathevents.put(DeathEventType.ZOMBIE, ConfigManager.checkList(tombMessages.getStringList("zombie"), Arrays.asList(defaultZombieMessages)));
-		deathevents.put(DeathEventType.ZOMBIE_VILLAGER, ConfigManager.checkList(tombMessages.getStringList("zombie-villager"), Arrays.asList(defaultZombieVillagerMessages)));
-		deathevents.put(DeathEventType.PVP, ConfigManager.checkList(tombMessages.getStringList("pvp"), Arrays.asList(defaultPVPMessages)));
-		deathevents.put(DeathEventType.BLOCK_EXPLOSION, ConfigManager.checkList(tombMessages.getStringList("block_explosion"), Arrays.asList(defaultBlockExplosionMessages)));
-		deathevents.put(DeathEventType.ENTITY_EXPLOSION, ConfigManager.checkList(tombMessages.getStringList("entity-explosion"), Arrays.asList(defaultEntityExplosionMessages)));
-		deathevents.put(DeathEventType.CONTACT, ConfigManager.checkList(tombMessages.getStringList("contact"), Arrays.asList(defaultContactMessages)));
-		deathevents.put(DeathEventType.GHAST, ConfigManager.checkList(tombMessages.getStringList("ghast"), Arrays.asList(defaultGhastMessages)));
-		deathevents.put(DeathEventType.SLIME, ConfigManager.checkList(tombMessages.getStringList("slime"), Arrays.asList(defaultSlimeMessages)));
-		deathevents.put(DeathEventType.SUFFOCATION, ConfigManager.checkList(tombMessages.getStringList("suffocation"), Arrays.asList(defaultSuffocationMessages)));
-		deathevents.put(DeathEventType.PIG_ZOMBIE, ConfigManager.checkList(tombMessages.getStringList("pigzombie"), Arrays.asList(defaultPigzombieMessages)));
-		deathevents.put(DeathEventType.VOID, ConfigManager.checkList(tombMessages.getStringList("void"), Arrays.asList(defaultVoidMessages)));
-		deathevents.put(DeathEventType.WOLF, ConfigManager.checkList(tombMessages.getStringList("wolf"), Arrays.asList(defaultWolfMessages)));
-		deathevents.put(DeathEventType.LIGHTNING, ConfigManager.checkList(tombMessages.getStringList("lightning"), Arrays.asList(defaultLightningMessages)));
-		deathevents.put(DeathEventType.SUICIDE, ConfigManager.checkList(tombMessages.getStringList("suicide"), Arrays.asList(defaultSuicideMessages)));
-		deathevents.put(DeathEventType.UNKNOWN, ConfigManager.checkList(tombMessages.getStringList("unknown"), Arrays.asList(defaultUnknownMessages)));
-		deathevents.put(DeathEventType.STARVATION, ConfigManager.checkList(tombMessages.getStringList("starvation"), Arrays.asList(defaultStarvationMessages)));
-		deathevents.put(DeathEventType.ENDERMAN, ConfigManager.checkList(tombMessages.getStringList("enderman"), Arrays.asList(defaultEndermanMessages)));
-		deathevents.put(DeathEventType.CAVE_SPIDER, ConfigManager.checkList(tombMessages.getStringList("cavespider"), Arrays.asList(defaultCaveSpiderMessages)));
-		deathevents.put(DeathEventType.SILVERFISH, ConfigManager.checkList(tombMessages.getStringList("silverfish"), Arrays.asList(defaultSilverfishMessages)));
-		deathevents.put(DeathEventType.GIANT, ConfigManager.checkList(tombMessages.getStringList("giant"), Arrays.asList(defaultGiantMessages)));
-		deathevents.put(DeathEventType.BLAZE, ConfigManager.checkList(tombMessages.getStringList("blaze"), Arrays.asList(defaultBlazeMessages)));
-		deathevents.put(DeathEventType.ENDERDRAGON, ConfigManager.checkList(tombMessages.getStringList("enderdragon"), Arrays.asList(defaultEnderDragonMessages)));
-		deathevents.put(DeathEventType.MAGMA_CUBE, ConfigManager.checkList(tombMessages.getStringList("magma-cube"), Arrays.asList(defaultMagmaCubeMessages)));
-		deathevents.put(DeathEventType.DISPENSER, ConfigManager.checkList(tombMessages.getStringList("dispenser"), Arrays.asList(defaultDispenserMessages)));
-		deathevents.put(DeathEventType.POISON, ConfigManager.checkList(tombMessages.getStringList("poison"), Arrays.asList(defaultPoisionMessages)));
-		deathevents.put(DeathEventType.MAGIC, ConfigManager.checkList(tombMessages.getStringList("magic"), Arrays.asList(defaultMagicMessages)));
-		deathevents.put(DeathEventType.IRON_GOLEM, ConfigManager.checkList(tombMessages.getStringList("irongolem"), Arrays.asList(defaultIronGolemMessages)));
-        deathevents.put(DeathEventType.WITCH, ConfigManager.checkList(tombMessages.getStringList("witch"), Arrays.asList(defaultWitchMessages)));
-        deathevents.put(DeathEventType.WITHER_SKELETON, ConfigManager.checkList(tombMessages.getStringList("witherskeleton"), Arrays.asList(defaultWitherSkeletonMessages)));
-        deathevents.put(DeathEventType.WITHER, ConfigManager.checkList(tombMessages.getStringList("wither"), Arrays.asList(defaultWitherMessages)));
-		deathevents.put(DeathEventType.HUSK, ConfigManager.checkList(tombMessages.getStringList("husk"), Arrays.asList(defaultHuskMessages)));
-		deathevents.put(DeathEventType.GUARDIAN, ConfigManager.checkList(tombMessages.getStringList("guardian"),Arrays.asList(defaultGuardianMessages)));
-		deathevents.put(DeathEventType.ELDER_GUARDIAN, ConfigManager.checkList(tombMessages.getStringList("elder-guardian"),Arrays.asList(defaultElderGuardianMessages)));
-		deathevents.put(DeathEventType.ENDERMITE, ConfigManager.checkList(tombMessages.getStringList("endermite"), Arrays.asList(defaultEndermiteMessages)));
-		deathevents.put(DeathEventType.EVOKER, ConfigManager.checkList(tombMessages.getStringList("evoker"), Arrays.asList(defaultEvokerMessages)));
-		deathevents.put(DeathEventType.PILLAGER, ConfigManager.checkList(tombMessages.getStringList("pillager"), Arrays.asList(defaultPillagerMessages)));
-		deathevents.put(DeathEventType.RAVAGER, ConfigManager.checkList(tombMessages.getStringList("ravager"), Arrays.asList(defaultRavagerMessages)));
-		deathevents.put(DeathEventType.VINDICATOR, ConfigManager.checkList(tombMessages.getStringList("vindicator"), Arrays.asList(defaultVindicatorMessages)));
-		deathevents.put(DeathEventType.VEX, ConfigManager.checkList(tombMessages.getStringList("vex"), Arrays.asList(defaultVexMessages)));
-		deathevents.put(DeathEventType.DROWNED, ConfigManager.checkList(tombMessages.getStringList("drowned"), Arrays.asList(defaultDrownedMessages)));
-		deathevents.put(DeathEventType.POLAR_BEAR, ConfigManager.checkList(tombMessages.getStringList("polar-bear"), Arrays.asList(defaultPolarBearMessages)));
-		deathevents.put(DeathEventType.PANDA, ConfigManager.checkList(tombMessages.getStringList("panda"), Arrays.asList(defaultPandaMessages)));
-		deathevents.put(DeathEventType.SHULKER, ConfigManager.checkList(tombMessages.getStringList("shulker"), Arrays.asList(defaultShulkerMessages)));
-		deathevents.put(DeathEventType.STRAY, ConfigManager.checkList(tombMessages.getStringList("stray"), Arrays.asList(defaultStrayMessages)));
-		deathevents.put(DeathEventType.PHANTOM, ConfigManager.checkList(tombMessages.getStringList("phantom"), Arrays.asList(defaultPhantomMessages)));
+		for(DeathEventType type : DeathEventType.values())
+		{
+			deathevents.put(type, ConfigManager.checkList(tombMessages.getStringList(DeathMessages.mapTypeToNodeName(type)), deathevents.get(type)));
+		}
 
 		// ToDo add new deathevents on top
 // Debugging
