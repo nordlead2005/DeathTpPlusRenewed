@@ -1249,7 +1249,7 @@ public class ConfigManager {
         // Also check for New Version of the plugin
         if (checkForUpdate) {
             //TODO: Fix auto-version check
-            //versionCheck();
+            versionCheck();
         }
         configAvailable = true;
     }
@@ -1427,12 +1427,10 @@ public class ConfigManager {
         boolean errorAccessingGithub = false;
         int pluginMajor;
         int pluginMinor;
-        int pluginDev;
-        int pluginCB;
+        int pluginBuild;
         int githubMajor;
         int githubMinor;
-        int githubDev;
-        int githubCB;
+        int githubBuild;
         String plVersion;
         String ghVersion;
         String cbVersion = plugin.getServer().getVersion();
@@ -1456,11 +1454,10 @@ public class ConfigManager {
         String pluginVersion = plugin.getDescription().getVersion();
         log.debug("pluginVersion", pluginVersion);
         plVersion = pluginVersion.replace(".", ":");
-        String[] thisVersion = plVersion.split(":");
+        String[] thisVersion = plVersion.split("-")[0].split(":");
         pluginMajor = Integer.parseInt(thisVersion[0]);
         pluginMinor = Integer.parseInt(thisVersion[1]);
-        pluginDev = Integer.parseInt(thisVersion[2]);
-        pluginCB = Integer.parseInt(thisVersion[3]);
+        pluginBuild = Integer.parseInt(thisVersion[2]);
         URL url;
         String newVersion = "";
         try {
@@ -1486,27 +1483,7 @@ public class ConfigManager {
             String[] githubVersion = ghVersion.split(":");
             githubMajor = Integer.parseInt(githubVersion[0]);
             githubMinor = Integer.parseInt(githubVersion[1]);
-            if (githubVersion.length > 3) {
-                githubDev = Integer.parseInt(githubVersion[2]);
-                githubCB = Integer.parseInt(githubVersion[3]);
-            } else {
-                githubDev = 0;
-                githubCB = Integer.parseInt(githubVersion[2]);
-            }
-
-            if (cbVer < pluginCB) {
-                log.warning("You are running on an older CB Version");
-                log.warning("There might be issues, just letting you know");
-            }
-            if (cbVer > pluginCB) {
-                if (githubCB >= cbVer) {
-                    log.warning("There is a new version available for your CB Version");
-                    log.warning("You might want to update!");
-                } else {
-                    log.warning("You are running on an newer CB Version");
-                    log.warning("There might be issues, just letting you know");
-                }
-            }
+            githubBuild = Integer.parseInt(githubVersion[2]);
 
             if (newVersion.equals(pluginVersion)) {
                 log.info("is up to date at version "
@@ -1514,27 +1491,11 @@ public class ConfigManager {
                 return true;
             }
 
-            if (githubCB < pluginCB) {
-                log.warning("You are running a testbuild for CB: " + pluginCB);
-            }
-            if (githubCB > pluginCB) {
-                log.info("There is a new Version available for CB: " + githubCB);
-            }
-
-            if ((githubMajor < pluginMajor) || githubMinor < pluginMinor || githubDev < pluginDev || pluginDev > 0) {
-                log.warning("You are running an dev-build. Be sure you know what you are doing!");
+            if ((githubMajor < pluginMajor) || githubMinor < pluginMinor || githubBuild < pluginBuild) {
+                log.warning("You are running an unreleased build. Be sure you know what you are doing!");
                 log.warning("Please report any bugs via issues or tickets!");
-                boolean sameMajorMinor = (githubMajor == pluginMajor) && (githubMinor == pluginMinor);
-                if ((githubDev > pluginDev) && sameMajorMinor) {
-                    log.warning("There is a NEWER dev-build available!");
-                }
-                if ((githubDev < pluginDev) && sameMajorMinor) {
-                    log.severe("WOW! Where did you get THIS version from?");
-                    log.severe("You like living on the edge, do you?");
-                }
             }
-            if ((githubMajor > pluginMajor) && githubMinor > pluginMinor) {
-
+            if ((githubMajor > pluginMajor) || githubMinor > pluginMinor || githubBuild > pluginBuild) {
                 log.warning("is out of date!");
                 log.warning("This version: " + pluginVersion + "; latest version: " + newVersion + ".");
                 plugin.getServer().broadcast("A new Version of DeathTpPlusRenewed is available!", "deathtpplusrenewed.admin.version");
