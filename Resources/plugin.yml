@@ -1,10 +1,10 @@
 name: DeathTpPlusRenewed
 main: org.spigotmc.DeathTpPlusRenewed.DeathTpPlusRenewed
-version: 0.1.0.2
+version: 0.2.0
 website: https://www.spigotmc.org
 authors: ['Don Redhorse', 'mung3r', 'nordlead2005']
 description: Death teleport, Death Messages, Tombstone and Tombs
-softdepend: [Vault,LWC,Lockette,MobArena,dynmap,WorldGuard]
+softdepend: [Vault,LWC,BlockLocker,MobArena,dynmap,WorldGuard]
 api-version: 1.13
 
 commands:
@@ -90,7 +90,7 @@ permissions:
             DeathTpPlusRenewed.tombstone.freechest: true
             DeathTpPlusRenewed.tombstone.large: true
             DeathTpPlusRenewed.tombstone.lwc: true
-            DeathTpPlusRenewed.tombstone.lockette: true
+            DeathTpPlusRenewed.tombstone.blocklocker: true
             DeathTpPlusRenewed.tombstone.sign: true
             DeathTpPlusRenewed.tombstone.freesign: true
             DeathTpPlusRenewed.tombstone.quickloot: true
@@ -129,7 +129,7 @@ permissions:
             DeathTpPlusRenewed.tombstone.time: true
             DeathTpPlusRenewed.tombstone.large: true
             DeathTpPlusRenewed.tombstone.lwc: true
-            DeathTpPlusRenewed.tombstone.lockette: true
+            DeathTpPlusRenewed.tombstone.blocklocker: true
     DeathTpPlusRenewed.tomb.*:
         description: Gives access to all DeathTpPlusRenewed tomb commands / features
         children:
@@ -190,8 +190,8 @@ permissions:
     DeathTpPlusRenewed.tombstone.lwc:
         description: Allow LWC protection
         default: true
-    DeathTpPlusRenewed.tombstone.lockette:
-        description: Allow Lockette protection
+    DeathTpPlusRenewed.tombstone.blocklocker:
+        description: Allow BlockLocker protection
         default: true
     DeathTpPlusRenewed.tombstone.sign:
         description: Allow player to get a sign on the tombstone
