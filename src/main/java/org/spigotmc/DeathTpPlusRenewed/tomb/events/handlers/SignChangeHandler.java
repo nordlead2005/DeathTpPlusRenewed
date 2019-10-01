@@ -40,13 +40,7 @@ public class SignChangeHandler {
 			String deadName = event.getLine(1);
 			if (admin) {
 				if ((tomb = tombWorker.getTomb(deadName)) == null) {
-					try {
-						deadName = p.getServer().getPlayer(event.getLine(1)).getName();
-					} catch (Exception e2) {
-						p.sendMessage(tombWorker.graveDigger + "The player " + event.getLine(1)
-								+ "was not found.(The player HAS to be CONNECTED)");
-						return;
-					}
+					deadName = event.getLine(1);
 				} else {
 					deadName = tomb.getPlayer();
 				}

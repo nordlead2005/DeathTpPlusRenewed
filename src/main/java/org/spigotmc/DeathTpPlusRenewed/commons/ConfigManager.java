@@ -346,6 +346,10 @@ public class ConfigManager {
      */
     private int maxDeaths = 0;
     /**
+     * Show minecraft server statistics for deaths, updates on player death, else show saved death count.
+     */
+    private boolean useServerDeathStatistics = false;
+    /**
      * When a Tomb is destroyed, the respawn point is reset.
      */
     private boolean resetTombRespawn = false;
@@ -450,6 +454,7 @@ public class ConfigManager {
         config.addDefault("useTombAsRespawnPoint", useTombAsRespawnPoint);
         config.addDefault("tombKeyWord", tombKeyWord);
         config.addDefault("maxDeaths", maxDeaths);
+        config.addDefault("useServerDeathStatistics", useServerDeathStatistics);
         config.addDefault("resetTombRespawn", resetTombRespawn);
         config.addDefault("allowTombAsTeleport", allowTombAsTeleport);
     }
@@ -522,6 +527,7 @@ public class ConfigManager {
         useTombAsRespawnPoint = config.getBoolean("useTombAsRespawnPoint");
         tombKeyWord = config.getString("tombKeyWord");
         maxDeaths = config.getInt("maxDeaths");
+        useServerDeathStatistics = config.getBoolean("useServerDeathStatistics");
         resetTombRespawn = config.getBoolean("resetTombRespawn");
         allowTombAsTeleport = config.getBoolean("allowTombAsTeleport");
 
@@ -580,6 +586,7 @@ public class ConfigManager {
         log.debug("useTombAsRespawnPoint", useTombAsRespawnPoint);
         log.debug("tombKeyWord", tombKeyWord);
         log.debug("maxDeaths", maxDeaths);
+        log.debug("useServerDeathStatistics", useServerDeathStatistics);
         log.debug("resetTombRespawn", resetTombRespawn);
         log.debug("allowTombAsTeleport", allowTombAsTeleport);
 
@@ -810,6 +817,10 @@ public class ConfigManager {
         stream.println("# without resetting the counter. If set to 2, every 2 deaths, the tombs are destroyed. (Sign is dropped) 0: = Disabled");
         stream.println("maxDeaths: " + maxDeaths);
         stream.println();
+        stream.println("# If the tomb death count should use server statistics instead of internal tracking.");
+        stream.println("# If false, starts at 0.");
+        stream.println("useServerDeathStatistics: " + useServerDeathStatistics);
+        stream.println();
         stream.println("# When a Tomb is destroyed, the respawn point is reset.");
         stream.println("resetTombRespawn: " + resetTombRespawn);
         stream.println();
@@ -1036,6 +1047,10 @@ public class ConfigManager {
 
     public int getMaxDeaths() {
         return maxDeaths;
+    }
+
+    public boolean getUseServerDeathStatistics() {
+        return useServerDeathStatistics;
     }
 
     public boolean isResetTombRespawn() {
@@ -1434,21 +1449,17 @@ public class ConfigManager {
         String plVersion;
         String ghVersion;
         String cbVersion = plugin.getServer().getVersion();
-        int cbVer;
         if (cbVersion.contains("++")) {
             log.info("You are running a CB ++ Version, everything should be fine.");
             log.info("Except Version checking.");
-            cbVer = 0;
         } else {
             int versionPos = cbVersion.indexOf("-b") + 2;
             cbVersion = cbVersion.substring(versionPos, versionPos + 4);
             log.debug("bukkitVersion", cbVersion);
             try {
-                cbVer = Integer.parseInt(cbVersion);
             } catch (Exception e) {
                 log.info("Looks like are running a strange version, everything should be fine.");
                 log.info("Except Version checking.");
-                cbVer = 0;
             }
         }
         String pluginVersion = plugin.getDescription().getVersion();

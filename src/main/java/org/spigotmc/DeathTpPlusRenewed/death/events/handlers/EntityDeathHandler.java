@@ -729,7 +729,21 @@ public class EntityDeathHandler {
 
 			int deathLimit = config.getMaxDeaths();
 
-			tomb.addDeath();
+			if(!config.getUseServerDeathStatistics())
+			{
+				tomb.addDeath();
+			}
+			else
+			{
+				try
+				{
+					tomb.setDeaths(deathDetail.getPlayer().getStatistic(Statistic.DEATHS));
+				}
+				catch(IllegalArgumentException e)
+				{
+					log.warning("Failure to get death statistics for "+deathDetail.getPlayer().getName());
+				}
+			}
 
 			if ((deathLimit != 0) && (tomb.getDeaths() % deathLimit) == 0) {
 				tomb.resetTombBlocks();
