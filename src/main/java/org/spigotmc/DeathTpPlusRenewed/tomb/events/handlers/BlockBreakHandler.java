@@ -5,7 +5,8 @@ package org.spigotmc.DeathTpPlusRenewed.tomb.events.handlers;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
+import org.bukkit.block.data.type.WallSign;
+import org.bukkit.block.data.type.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.spigotmc.DeathTpPlusRenewed.DeathTpPlusRenewed;
@@ -90,16 +91,29 @@ public class BlockBreakHandler {
 		Player p = event.getPlayer();
 
 		if (isSign(b.getType())) {
-			org.bukkit.material.Sign signData = (org.bukkit.material.Sign) b.getState().getData();
-			TombStoneBlock tStoneBlock =
-					tombStoneHelper.getTombStoneBlockList(b.getRelative(signData.getAttachedFace()).getLocation());
+			Location attachedLocation = null;
+			if(b.getBlockData() instanceof WallSign)
+			{
+				attachedLocation = b.getRelative(((WallSign)b.getBlockData()).getFacing().getOppositeFace()).getLocation();
+			}
+			else if (b.getBlockData() instanceof Sign)
+			{
+				attachedLocation = b.getLocation();
+				attachedLocation.setY(attachedLocation.getBlockY()-1);
+			}
+			
+			TombStoneBlock tStoneBlock = null;
+			if(attachedLocation != null)
+			{
+				tStoneBlock = tombStoneHelper.getTombStoneBlockList(attachedLocation);
+			}
 
 			if (tStoneBlock == null) {
 				return;
 			}
 
-			if (tStoneBlock.getBlockLockerSign() != null) {
-				Sign sign = (Sign) b.getState();
+			if (tStoneBlock.getBlockLockerSign() != null) { 
+				org.bukkit.block.Sign sign = (org.bukkit.block.Sign) b.getState();
 
 				event.setCancelled(true);
 				sign.update();
@@ -162,7 +176,7 @@ public class BlockBreakHandler {
 
 		if (block.getState() instanceof Sign) {
 			String playerName = event.getPlayer().getName();
-			Sign sign = (Sign) block.getState();
+			org.bukkit.block.Sign sign = (org.bukkit.block.Sign) block.getState();
 
 			if (sign.getLine(0).indexOf(config.getTombKeyWord()) == 0) {
 				Tomb tomb;
