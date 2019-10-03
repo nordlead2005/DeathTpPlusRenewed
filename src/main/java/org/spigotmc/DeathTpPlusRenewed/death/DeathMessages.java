@@ -570,7 +570,7 @@ afterwards parsable again from the configuration class of bukkit
 		};
 		multiKillSounds = Arrays.asList(defaultMultiKillSounds);
 
-		defaultSoundUrl = "https://raw.github.com/dredhorse/DeathTpPlusRenewed/master/Resources/sounds/";
+		defaultSoundUrl = "https://raw.github.com/nordlead2005/DeathTpPlusRenewed/master/Resources/sounds/";
 		defaultSoundFormat = ".ogg";
 
 		soundUrl = defaultSoundUrl;

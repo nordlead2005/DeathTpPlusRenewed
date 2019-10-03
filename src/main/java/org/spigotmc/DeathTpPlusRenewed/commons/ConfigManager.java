@@ -96,11 +96,11 @@ public class ConfigManager {
     /**
      * Link to the location of the plugin website
      */
-    private final String pluginSlug = "http://dev.bukkit.org/server-mods/deathtpplus/";
+    private final String pluginSlug = "https://www.spigotmc.org/resources/deathtpplusrenewed.71652/";
     /**
      * Link to the location of the recent version number, the file should be a text with just the number
      */
-    private final String versionURL = "https://raw.github.com/dredhorse/DeathTpPlusRenewed/master/Resources/deathtpplus.ver";
+    private final String versionURL = "https://raw.github.com/nordlead2005/DeathTpPlusRenewed/master/Resources/deathtpplus.ver";
 
     //ToDo create new link for every version
     /**
