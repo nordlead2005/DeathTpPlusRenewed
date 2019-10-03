@@ -174,7 +174,7 @@ public class BlockBreakHandler {
 		Block block = event.getBlock();
 		Player player = event.getPlayer();
 
-		if (block.getState() instanceof Sign) {
+		if (block.getState() instanceof org.bukkit.block.Sign) {
 			String playerName = event.getPlayer().getName();
 			org.bukkit.block.Sign sign = (org.bukkit.block.Sign) block.getState();
 

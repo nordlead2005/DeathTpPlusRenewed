@@ -53,7 +53,14 @@ public class TeleportHelper {
         if (isDeathTp) {
             canTele = hasItem(player) && hasFunds(player);
         } else {
-            canTele = config.isAllowTombAsTeleport();
+            if(config.isTombRequiresTPCost())
+            {
+                canTele = hasItem(player) && hasFunds(player);
+            }
+            else
+            {
+                canTele = config.isAllowTombAsTeleport();
+            }
         }
         return canTele;
     }

@@ -354,6 +354,10 @@ public class ConfigManager {
      */
     private boolean resetTombRespawn = false;
     /**
+     * When a Tomb is destroyed, the respawn point is reset.
+     */
+    private boolean tombRequiresTPCost = false;
+    /**
      * Allow RightClick of Tomb to Teleport to Deathlocation
      */
     private boolean allowTombAsTeleport = false;
@@ -456,6 +460,7 @@ public class ConfigManager {
         config.addDefault("maxDeaths", maxDeaths);
         config.addDefault("useServerDeathStatistics", useServerDeathStatistics);
         config.addDefault("resetTombRespawn", resetTombRespawn);
+        config.addDefault("tombRequiresTPCost", tombRequiresTPCost);
         config.addDefault("allowTombAsTeleport", allowTombAsTeleport);
     }
 
@@ -529,6 +534,7 @@ public class ConfigManager {
         maxDeaths = config.getInt("maxDeaths");
         useServerDeathStatistics = config.getBoolean("useServerDeathStatistics");
         resetTombRespawn = config.getBoolean("resetTombRespawn");
+        tombRequiresTPCost = config.getBoolean("tombRequiresTPCost");
         allowTombAsTeleport = config.getBoolean("allowTombAsTeleport");
 
         // Debugging
@@ -588,6 +594,7 @@ public class ConfigManager {
         log.debug("maxDeaths", maxDeaths);
         log.debug("useServerDeathStatistics", useServerDeathStatistics);
         log.debug("resetTombRespawn", resetTombRespawn);
+        log.debug("tombRequiresTPCost", tombRequiresTPCost);
         log.debug("allowTombAsTeleport", allowTombAsTeleport);
 
         // and now some working...
@@ -824,6 +831,9 @@ public class ConfigManager {
         stream.println("# When a Tomb is destroyed, the respawn point is reset.");
         stream.println("resetTombRespawn: " + resetTombRespawn);
         stream.println();
+        stream.println("# Should TP by tomb cost the same as /deathtp.");
+        stream.println("tombRequiresTPCost: " + tombRequiresTPCost);
+        stream.println();
         stream.println("# When a Tomb right clicked the player is teleported to his deathlocation.");
         stream.println("# Please Note: This only works if DeathTP is also enabled.");
         stream.println("allowTombAsTeleport: " + allowTombAsTeleport);
@@ -1055,6 +1065,11 @@ public class ConfigManager {
 
     public boolean isResetTombRespawn() {
         return resetTombRespawn;
+    }
+
+    public boolean isTombRequiresTPCost()
+    {
+        return tombRequiresTPCost;
     }
 
     public boolean isIgnoreWorldGuardProtection() {
