@@ -80,7 +80,7 @@ public class DeathTpCommand implements CommandExecutor {
 
 					deathLocation.setWorld(deathWorld);
 					player.teleport(deathLocation);
-					teleportHelper.registerTp(player);
+					teleportHelper.registerTp(player, true);
 				}
 			} else {
 				player.sendMessage("That command is not available");

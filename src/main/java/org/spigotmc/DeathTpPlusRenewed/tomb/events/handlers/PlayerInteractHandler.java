@@ -218,6 +218,7 @@ public class PlayerInteractHandler {
             TombWorker tombWorker = TombWorker.getInstance();
 
             player.sendMessage(tombWorker.graveDigger + "I teleported you to your place of death.");
+            teleportHelper.registerTp(player, false);
          }
       }
    }

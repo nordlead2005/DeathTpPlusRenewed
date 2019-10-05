@@ -65,7 +65,7 @@ public class TeleportHelper {
         return canTele;
     }
 
-    public void registerTp(Player player) {
+    public void registerTp(Player player, boolean deathTp) {
         if (hasItem(player)) {
             if (config.getChargeItem().compareTo("0") != 0) {
                 ItemStack itemInHand = player.getInventory().getItemInMainHand();
@@ -83,7 +83,14 @@ public class TeleportHelper {
             double deathTpCost = Double.valueOf(config.getDeathtpCost().trim());
             if (plugin.isEconomyActive() && deathTpCost > 0.0) {
                 plugin.getEconomy().withdrawPlayer(player, deathTpCost);
-                player.sendMessage(String.format("You used %s to use /deathtp.", plugin.getEconomy().format(deathTpCost)));
+                if(deathTp)
+                {
+                    player.sendMessage(String.format("You used %s to use /deathtp.", plugin.getEconomy().format(deathTpCost)));
+                }
+                else
+                {
+                    player.sendMessage(String.format("The services cost %s.", plugin.getEconomy().format(deathTpCost)));
+                }
             }
         }
     }
