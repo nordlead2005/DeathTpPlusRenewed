@@ -15,7 +15,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 import java.io.*;
-import java.net.MalformedURLException;
+import java.net.MalformedURLException; 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,11 +113,11 @@ public class ConfigManager {
     /**
      * This is the internal config version
      */
-    private final String configCurrent = "4.1";
+    private final String configCurrent = "4.2";
     /**
      * This is the DEFAULT for the config file version, should be the same as configCurrent. Will afterwards be changed
      */
-    private String configVer = "4.1";
+    private String configVer = "4.2";
 
     // and now the real stuff
 
