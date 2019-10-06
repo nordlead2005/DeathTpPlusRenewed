@@ -176,6 +176,10 @@ public class AdminCommand implements CommandExecutor {
             }
             return true;
         } else if (args[0].equalsIgnoreCase("version")) {
+            if (!plugin.hasPerm(sender, "admin.version", false)) {
+                plugin.sendMessage(p, PERM_DENIED);
+                return true;
+            }
             String message;
             if (config.isDifferentPluginAvailable()) {
                 message = "There is a different plugin version available, please check the logs.";
@@ -206,6 +210,10 @@ public class AdminCommand implements CommandExecutor {
 
 
         } else if (args[0].equalsIgnoreCase("reload")) {
+            if (!plugin.hasPerm(sender, "admin.reload", false)) {
+                plugin.sendMessage(p, PERM_DENIED);
+                return true;
+            }
             String msg = config.reloadConfig();
             plugin.sendMessage(p, msg);
         } else if (args[0].equalsIgnoreCase("remove")) {

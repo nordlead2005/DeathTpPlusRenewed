@@ -84,6 +84,7 @@ permissions:
             DeathTpPlusRenewed.admin.find: true
             DeathTpPlusRenewed.admin.remove: true
             DeathTpPlusRenewed.admin.time: true
+            DeathTpPlusRenewed.admin.reload: true
             DeathTpPlusRenewed.admin.version: true
             DeathTpPlusRenewed.admin.untomb: true
             DeathTpPlusRenewed.tombstone.use: true
@@ -117,6 +118,7 @@ permissions:
             DeathTpPlusRenewed.admin.find: true
             DeathTpPlusRenewed.admin.remove: true
             DeathTpPlusRenewed.admin.time: true
+            DeathTpPlusRenewed.admin.reload: true
             DeathTpPlusRenewed.admin.version: true
             DeathTpPlusRenewed.admin.untomb: true
     DeathTpPlusRenewed.tombstone.*:
@@ -171,6 +173,9 @@ permissions:
         default: op
     DeathTpPlusRenewed.admin.time:
         description: Allows you to change the timeout values of a tombstone
+        default: op
+    DeathTpPlusRenewed.admin.reload:
+        description: Allows you to reload the configuration
         default: op
     DeathTpPlusRenewed.admin.version:
         description: Allows you to check if the plugin is the newest version
