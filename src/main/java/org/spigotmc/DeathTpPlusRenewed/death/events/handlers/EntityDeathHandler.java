@@ -323,6 +323,7 @@ public class EntityDeathHandler {
 				{
 					plugin.sendMessage(player, "You died in a GriefProtection Region without build permissions. Dropping inventory.");
 					log.informational("GriefPrevention.allowBuild = "+allowBuild);
+					return;
 				}
 			}
 		}
