@@ -60,6 +60,7 @@ public class AdminCommand implements CommandExecutor {
             plugin.sendMessage(p,
                     "Usage: /dtpadmin untomb <playerCaseSensitive>");
             plugin.sendMessage(p, "Usage: /dtpadmin version");
+            plugin.sendMessage(p, "Usage: /dtpadmin reload");
             return true;
         }
         if (args[0].equalsIgnoreCase("list")) {
@@ -204,6 +205,9 @@ public class AdminCommand implements CommandExecutor {
             plugin.sendMessage(p, message);
 
 
+        } else if (args[0].equalsIgnoreCase("reload")) {
+            String msg = config.reloadConfig();
+            plugin.sendMessage(p, msg);
         } else if (args[0].equalsIgnoreCase("remove")) {
             if (!plugin.hasPerm(sender, "admin.remove", false)) {
                 plugin.sendMessage(p, PERM_DENIED);
@@ -254,6 +258,7 @@ public class AdminCommand implements CommandExecutor {
             plugin.sendMessage(p,
                     "Usage: /dtpadmin time <playerCaseSensitive> <#>");
             plugin.sendMessage(p, "Usage: /dtpadmin version");
+            plugin.sendMessage(p, "Usage: /dtpadmin reload");
             return true;
         }
         return true;
