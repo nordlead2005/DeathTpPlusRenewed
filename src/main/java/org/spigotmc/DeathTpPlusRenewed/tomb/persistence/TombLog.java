@@ -80,7 +80,7 @@ public class TombLog implements Serializable {
 				if (b != null) {
 					tomb.addSignBlock(b);
 				}
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException | NullPointerException e) {
 				log.info("One of the Tomb of " + player + " was destroyed. :\n"
 						+ loc);
 			}
