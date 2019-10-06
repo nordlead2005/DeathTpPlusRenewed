@@ -1587,6 +1587,8 @@ public class ConfigManager {
     public String reloadConfig() {
         String msg;
         if (configAvailable) {
+            plugin.reloadConfig();
+            config = plugin.getConfig();
             loadConfig();
             log.info("Config reloaded");
             msg = "Config was reloaded";
