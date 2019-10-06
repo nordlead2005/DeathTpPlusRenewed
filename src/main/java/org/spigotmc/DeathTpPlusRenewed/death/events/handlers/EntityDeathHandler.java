@@ -29,6 +29,9 @@ import org.spigotmc.DeathTpPlusRenewed.tomb.models.Tomb;
 import org.spigotmc.DeathTpPlusRenewed.tomb.models.TombStoneBlock;
 import org.spigotmc.DeathTpPlusRenewed.tomb.workers.TombWorker;
 
+import me.ryanhamshire.GriefPrevention.Claim;
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -292,13 +295,37 @@ public class EntityDeathHandler {
 			RegionQuery query = container.createQuery();
 			if(!query.testState(BukkitAdapter.adapt(block.getLocation()), localPlayer, Flags.BUILD))
 			{
-				plugin.sendMessage(player, "You died in a protected region. Dropping inventory");
+				plugin.sendMessage(player, "You died in a protected region. Dropping inventory.");
 				log.debug(player.getName() + " died in WorldGuard Region, dropping inventory");
 				return;
 			}
 		}
 		
-		//TODO: GreifPrevention
+		//TODO: GriefPrevention
+		if(plugin.isGriefPreventionEnabled())
+		{
+			// GriefPrevention.instance.claim
+			if(config.isAllowGriefPreventionContainerTrust())
+			{
+				Claim claim = GriefPrevention.instance.dataStore.getClaimAt(loc, false, null);
+				String allowBuild = claim.allowContainers(player);
+				if(null != allowBuild)
+				{
+					plugin.sendMessage(player, "You died in a GriefProtection Region without container permissions. Dropping inventory.");
+					log.informational("GriefPrevention.allowBuild = "+allowBuild);
+					return;
+				}
+			}
+			else
+			{
+				String allowBuild = GriefPrevention.instance.allowBuild(player, loc);
+				if(allowBuild != null)
+				{
+					plugin.sendMessage(player, "You died in a GriefProtection Region without build permissions. Dropping inventory.");
+					log.informational("GriefPrevention.allowBuild = "+allowBuild);
+				}
+			}
+		}
 
 //      Don't create the chest if it or its sign would be in the void
 		if (config.isVoidCheck()

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import com.garbagemule.MobArena.MobArenaHandler;
 import com.griefcraft.lwc.LWCPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
 
 import net.milkbowl.vault.economy.Economy;
 import nl.rutgerkok.blocklocker.BlockLockerPlugin;
@@ -211,6 +212,9 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 	private WorldGuardPlugin worldGuardPlugin;
 	private boolean worldGuardEnabled = false;
 
+	private GriefPrevention griefPreventionPlugin;
+	private boolean griefPreventionEnabled = false;
+
 	//~--- methods ------------------------------------------------------------
 
 	/**
@@ -311,6 +315,16 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 
 	public WorldGuardPlugin getWorldGuardPlugin() {
 		return worldGuardPlugin;
+	}
+
+	public boolean isGriefPreventionEnabled()
+	{
+		return griefPreventionEnabled;
+	}
+
+	public GriefPrevention getGriefPrevention()
+	{
+		return griefPreventionPlugin;
 	}
 
 	//~--- methods ------------------------------------------------------------
@@ -770,5 +784,15 @@ public class DeathTpPlusRenewed extends JavaPlugin {
 
 	public void setWorldGuardPlugin(WorldGuardPlugin worldGuardPlugin) {
 		this.worldGuardPlugin = worldGuardPlugin;
+	}
+
+	public void setGriefPreventionEnabled(boolean b)
+	{
+		griefPreventionEnabled = b;
+	}
+
+	public void setGriefPreventionPlugin(GriefPrevention plugin)
+	{
+		this.griefPreventionPlugin = plugin;
 	}
 }

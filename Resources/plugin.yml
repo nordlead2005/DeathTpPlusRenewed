@@ -4,7 +4,7 @@ version: 0.3.0
 website: https://www.spigotmc.org
 authors: ['Don Redhorse', 'mung3r', 'nordlead2005']
 description: Death teleport, Death Messages, Tombstone and Tombs
-softdepend: [Vault,LWC,BlockLocker,MobArena,dynmap,WorldGuard]
+softdepend: [Vault,LWC,BlockLocker,MobArena,dynmap,WorldGuard,GriefPrevention]
 api-version: 1.13
 
 commands:

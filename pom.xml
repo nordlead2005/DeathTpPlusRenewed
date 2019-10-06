@@ -78,6 +78,11 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/dynmap-api.jar</systemPath>
 		</dependency>
+        <dependency>
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>16.12.0</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<resources>

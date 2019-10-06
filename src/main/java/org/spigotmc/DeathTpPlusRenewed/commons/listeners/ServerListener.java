@@ -5,6 +5,7 @@ package org.spigotmc.DeathTpPlusRenewed.commons.listeners;
 import com.garbagemule.MobArena.MobArenaHandler;
 import com.griefcraft.lwc.LWCPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import me.ryanhamshire.GriefPrevention.GriefPrevention;
 
 import net.milkbowl.vault.economy.Economy;
 import nl.rutgerkok.blocklocker.BlockLockerPlugin;
@@ -88,6 +89,14 @@ public class ServerListener implements Listener {
 			plugin.setWorldGuardEnabled(false);
 			plugin.setWorldGuardPlugin(null);
 		}
+		Plugin checkGriefPrevention = pm.getPlugin("GriefPrevention");
+		if((checkGriefPrevention == null) && plugin.isGriefPreventionEnabled())
+		{
+			log.info("Disabling GriefPrevention integration.");
+			log.info("as GriefPrevention was unloaded / disabled.");
+			plugin.setGriefPreventionEnabled(false);
+			plugin.setGriefPreventionPlugin(null);
+		}
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -97,6 +106,7 @@ public class ServerListener implements Listener {
 		Plugin checkMobArena = pm.getPlugin("MobArena");
 		Plugin checkDynMap = pm.getPlugin("dynmap");
 		Plugin checkWorldGuard = pm.getPlugin("WorldGuard");
+		Plugin checkGriefPrevention = pm.getPlugin("GriefPrevention");
 		if (checkVault != null && !plugin.isUseVault()) {
 			plugin.setUseVault(true);
 			log.info("Vault detected");
@@ -170,6 +180,12 @@ public class ServerListener implements Listener {
 			log.info("Enabling WorldGuard integration");
 			plugin.setWorldGuardPlugin((WorldGuardPlugin) checkWorldGuard);
 			plugin.setWorldGuardEnabled(true);
+		}
+
+		if (checkGriefPrevention != null && !plugin.isGriefPreventionEnabled() && !config.isIgnoreGriefPreventionProtection()) {
+			log.info("Enabling GriefPrevention integration");
+			plugin.setGriefPreventionPlugin((GriefPrevention) checkGriefPrevention);
+			plugin.setGriefPreventionEnabled(true);
 		}
 	}
 }

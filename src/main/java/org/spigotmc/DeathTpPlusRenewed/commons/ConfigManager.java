@@ -113,11 +113,11 @@ public class ConfigManager {
     /**
      * This is the internal config version
      */
-    private final String configCurrent = "4.2";
+    private final String configCurrent = "4.3";
     /**
      * This is the DEFAULT for the config file version, should be the same as configCurrent. Will afterwards be changed
      */
-    private String configVer = "4.2";
+    private String configVer = "4.3";
 
     // and now the real stuff
 
@@ -160,6 +160,14 @@ public class ConfigManager {
      * Ignore WorldGuard protection
      */
     private boolean ignoreWorldGuardProtection = false;
+    /**
+     * Ignore GriefPrevention protection
+     */
+    private boolean ignoreGriefPreventionProtection = false;
+    /**
+     * Allow tombstone in GriefPrevention container trust region
+     */
+    private boolean allowGriefPreventionContainerTrust = false;
 
     // DeathTp Features
     /**
@@ -410,6 +418,8 @@ public class ConfigManager {
         config.addDefault("shouldOnlyUseAirToCreate", shouldOnlyUseAirToCreate);
         config.addDefault("integrateIntoDynmap", integrateIntoDynmap);
         config.addDefault("ignoreWorldGuardProtection", ignoreWorldGuardProtection);
+        config.addDefault("ignoreGriefPreventionProtection", ignoreGriefPreventionProtection);
+        config.addDefault("allowGriefPreventionContainerTrust", allowGriefPreventionContainerTrust);
 
         // DeathTp Features Variables
         config.addDefault("enableDeathtp", enableDeathtp);
@@ -484,6 +494,8 @@ public class ConfigManager {
         shouldOnlyUseAirToCreate = config.getBoolean("shouldOnlyUseAirToCreate");
         integrateIntoDynmap = config.getBoolean("integrateIntoDynmap");
         ignoreWorldGuardProtection = config.getBoolean("ignoreWorldGuardProtection");
+        ignoreGriefPreventionProtection = config.getBoolean("ignoreGriefPreventionProtection");
+        allowGriefPreventionContainerTrust = config.getBoolean("allowGriefPreventionContainerTrust");
 
         // DeathTpPlusRenewed Features
         enableDeathtp = config.getBoolean("enableDeathtp");
@@ -550,6 +562,8 @@ public class ConfigManager {
         log.debug("shouldOnlyUseAirToCreate", shouldOnlyUseAirToCreate);
         log.debug("integrateIntoDynmap", integrateIntoDynmap);
         log.debug("ignoreWorldGuardProtection", ignoreWorldGuardProtection);
+        log.debug("ignoreGriefPreventionProtection", ignoreGriefPreventionProtection);
+        log.debug("allowGriefPreventionContainerTrust", allowGriefPreventionContainerTrust);
         log.debug("allowWordTravel", allowWorldTravel);
         log.debug("enableDeathtp", enableDeathtp);
         log.debug("showDeathNotify", showDeathNotify);
@@ -675,6 +689,12 @@ public class ConfigManager {
         stream.println();
         stream.println("# Ignore WorldGuard Protection Zones");
         stream.println("ignoreWorldGuardProtection: " + ignoreWorldGuardProtection);
+        stream.println();
+        stream.println("# Ignore GriefPrevention Protection Zones");
+        stream.println("ignoreGriefPreventionProtection: " + ignoreGriefPreventionProtection);
+        stream.println();
+        stream.println("# Allow tombstone in GriefPrevention container trust region");
+        stream.println("allowGriefPreventionContainerTrust: " + allowGriefPreventionContainerTrust);
         stream.println();
         stream.println("#--------- DeathTp Features");
         stream.println();
@@ -1076,6 +1096,13 @@ public class ConfigManager {
         return ignoreWorldGuardProtection;
     }
 
+    public boolean isIgnoreGriefPreventionProtection() {
+        return ignoreGriefPreventionProtection;
+    }
+
+    public boolean isAllowGriefPreventionContainerTrust() {
+        return allowGriefPreventionContainerTrust;
+    }
     /**
      * Method to get the Instance of the Class, if the class hasn't been initialized yet it will.
      * @return instance of class
