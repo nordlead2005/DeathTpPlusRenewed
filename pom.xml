@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.spigotmc.deathtpplusrenewed</groupId>
 	<artifactId>DeathTpPlusRenewed</artifactId>
-	<version>0.4.0</version>
+	<version>0.4.1</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spigotmc.version>1.14.4-R0.1-SNAPSHOT</spigotmc.version>
