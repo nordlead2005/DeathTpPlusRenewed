@@ -40,6 +40,7 @@ public class DeathMessages {
 	public static enum DeathEventType {
 		BLOCK_EXPLOSION,
 		ENTITY_EXPLOSION,
+		BEE,
 		BLAZE,
 		CAVE_SPIDER,
 		CONTACT,
@@ -431,11 +432,14 @@ public class DeathMessages {
      * Array which holds default Panda messages
      */
     private String[] defaultPandaMessages;
-
     /**
      * Array which holds default Husk messages
      */
-    private String[] defaultHuskMessages;
+	 private String[] defaultHuskMessages;
+    /**
+     * Array which holds default Bee messages
+     */
+	 private String[] defaultBeeMessages;
 	
 
 	// ToDo add new variables on top
@@ -1079,9 +1083,17 @@ afterwards parsable again from the configuration class of bukkit
         /** Creating the default Panda Kill messages*/
 		defaultHuskMessages = new String[]{
 			"&5%n&7 tried to husk corn.",
-			"&5%n&7 knows what dry skin is like.",
+			"&5%n&7 knows what dry skin is like."
 		};
 		deathMessages.put(DeathEventType.HUSK, Arrays.asList(defaultHuskMessages));
+
+		/** Creating the default Panda Kill messages*/
+	 defaultBeeMessages = new String[]{
+		 "&5%n&7 messed with a bee nest.",
+		 "&5%n&7 likes honey.",
+		 "&5%n&7 thinks they are a pooh bear."
+	 };
+	 deathMessages.put(DeathEventType.BEE, Arrays.asList(defaultBeeMessages));
 		
 		// ToDo add new messages on top
 	}
@@ -1138,7 +1150,11 @@ afterwards parsable again from the configuration class of bukkit
 		log.info("Loading death messages...");
 		for(DeathEventType type : DeathEventType.values())
 		{
-			deathMessages.put(type, ConfigManager.checkList(deathMessageFileConfig.getStringList(mapTypeToNodeName(type)), deathMessages.get(type)));
+			List<String> messages = ConfigManager.checkList(deathMessageFileConfig.getStringList(mapTypeToNodeName(type)), deathMessages.get(type));
+			if(messages.size() > 0)
+			{
+				deathMessages.put(type, messages);
+			}
 		}
 
 		//ToDo add new deathMessages to the top

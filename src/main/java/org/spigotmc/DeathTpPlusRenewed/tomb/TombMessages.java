@@ -329,7 +329,17 @@ public class TombMessages {
     /**
      * Array which holds default Phantom messages
      */
-    private String[] defaultPhantomMessages;
+	 private String[] defaultPhantomMessages;
+	 
+	 /**
+	  * 1.15.1
+	  */
+
+    /**
+     * Array which holds default Bee messages
+     */
+	 private String[] defaultBeeMessages;
+
 
 
 	// ToDo add new variables to the top
@@ -693,23 +703,25 @@ afterwards parsable again from the configuration class of bukkit
 		};
 		deathevents.put(DeathEventType.DROWNED, Arrays.asList(defaultDrownedMessages));
 		
-        /** Creating the default Stray Messages*/
-        defaultStrayMessages = new String[]{
-			"stray"
+		/** Creating the default Stray Messages*/
+		defaultStrayMessages = new String[]{
+		"stray"
 		};
 		deathevents.put(DeathEventType.STRAY, Arrays.asList(defaultStrayMessages));
 		
-        /** Creating the default Shulker Messages*/
-        defaultShulkerMessages = new String[]{
-			"shulker"
+		/** Creating the default Shulker Messages*/
+		defaultShulkerMessages = new String[]{
+		"shulker"
 		};
 		deathevents.put(DeathEventType.SHULKER, Arrays.asList(defaultShulkerMessages));
 		
-        /** Creating the default Shulker Messages*/
-        defaultPhantomMessages = new String[]{
-			"phantom"
-		};
-		deathevents.put(DeathEventType.SHULKER, Arrays.asList(defaultPhantomMessages));
+		/** Creating the default Phantom Messages*/
+		defaultPhantomMessages = new String[]{"phantom"};
+		deathevents.put(DeathEventType.PHANTOM, Arrays.asList(defaultPhantomMessages));
+		
+		/** Creating the default Bee Messages*/
+		defaultBeeMessages = new String[]{"Bee", "Queen Bee", "Stinger"};
+	 	deathevents.put(DeathEventType.BEE, Arrays.asList(defaultBeeMessages));
 
 
 		// ToDo add new tomb messages to the top
@@ -746,7 +758,11 @@ afterwards parsable again from the configuration class of bukkit
 		log.info("Loading tomb messages..");
 		for(DeathEventType type : DeathEventType.values())
 		{
-			deathevents.put(type, ConfigManager.checkList(tombMessages.getStringList(DeathMessages.mapTypeToNodeName(type)), deathevents.get(type)));
+			List<String> messages = ConfigManager.checkList(tombMessages.getStringList(DeathMessages.mapTypeToNodeName(type)), deathevents.get(type));
+			if(messages.size() > 0)
+			{
+				deathevents.put(type, messages);
+			}
 		}
 
 		// ToDo add new deathevents on top
